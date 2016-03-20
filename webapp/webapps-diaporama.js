@@ -144,7 +144,7 @@ $(function() {
 
 	/* Gérer les 4 boutons de navigation "first", "previous", "next" et "last" */
 	navigation.on('click', 'button[data-action]', function(event) {
-		var action = $(event.target).attr('data-action');
+		var action = $(event.target).closest('button').attr('data-action');
 		diaporama[action]();
 	});
 
