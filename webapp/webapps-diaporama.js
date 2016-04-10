@@ -156,6 +156,24 @@ $(function() {
 		diaporama.showPrevious();
 	});
 
+
+	/* Faire défiler les images  avec les touches gauche/droite du clavier */
+	$(document.body).on('keypress', function(event) {
+		if (event.target.tagName === 'INPUT' || event.ctrlKey)
+			return;
+		var keyCode = event.which || event.keyCode;
+		switch(keyCode) {
+			case 37: // left
+				diaporama.showPrevious();
+				event.preventDefault();
+				break;
+			case 39: // right
+				diaporama.showNext();
+				event.preventDefault();
+				break;
+		}
+	});
+
 	/* Empêcher le "dragstart"  sur les images pour être sûr que le 'swipeleft' fonctionne */
 	$('#diaporama-content').on('dragstart', function(event) {
 		event.preventDefault();
