@@ -4,8 +4,6 @@ function Diaporama(content) {
 	this.updateSize();
 	this.index = -1;
 	this.files = [];
-	this.reader = new FileReader();
-	this.reader.onload = this.onreaderload.bind(this);
 	this.image.on('load', this.onimageload.bind(this));
 }
 
@@ -17,8 +15,11 @@ Diaporama.prototype.load = function(files) {
 
 Diaporama.prototype.show = function(index) {
 	if (this.isReady()) {
+		var file, description;
 		this.index = (index + this.files.length) % this.files.length;
-		this.reader.readAsDataURL(this.files[this.index]);
+		file = this.files[this.index];
+		description = file.name + '<br />(' + file.type + ', ' + this.formatFileSize(file.size) + ', ' + file.lastModifiedDate.toLocaleDateString() + ')';
+		this.image.hide().attr('src', window.URL.createObjectURL(file)).attr('title', description);
 	} else {
 		this.index = -1;
 		this.image.hide().attr('src', '').attr('title', '');
@@ -62,14 +63,8 @@ Diaporama.prototype.isReady = function() {
 	return this.files && this.files.length > 0;
 };
 
-Diaporama.prototype.onreaderload = function(event) {
-	var file = this.files[this.index],
-		description = file.name + '<br />(' + file.type + ', ' + this.formatFileSize(file.size) + ', ' + file.lastModifiedDate.toLocaleDateString() + ')',
-		url = event.target.result/*reader.result*/;
-	this.image.hide().attr('src', url).attr('title', description);
-};
-
 Diaporama.prototype.onimageload = function(event) {
+	window.URL.revokeObjectURL(this.image[0].src);
 	this.image.fadeIn('fast');
 	if (this.onchange)
 		this.onchange(this);
