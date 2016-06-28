@@ -22,3 +22,18 @@ NB : quand le certificat HTTPS est incorrect, la mise en cache échouera sous Ch
 
 ![Présentation de l'IHM](./screenshots/webapps-diaporama-1.png)
 
+## Licence
+
+Ce projet est distribué sous licence MIT, reproduite dans le fichier LICENSE ici présent.
+
+## Changelog
+
+2016-03-20
+- première version
+
+2016-04-11
+- amélioration des performances en utilisant URL.createObjectURL et URL.revokeObjectURL au lieu de FileReader.readAsDataURL
+- ajout du support des touches gauche/droite pour naviguer dans le diaporama
+
+2016-06-28
+- ajout du fichier LICENCE
