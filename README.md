@@ -8,7 +8,7 @@ A simple diaporama application using HTML5, JavaScript and CSS3.
 
 Les librairies suivantes ont été utilisées pour cette application :
 
-- [jQuery 2.2.1](http://jquery.com/) sous licence MIT
+- [jQuery 2.2.4](http://jquery.com/) sous licence MIT
 - [jQuery Mobile 1.4.5](http://jquerymobile.com/) sous licence MIT pour les évènements 'swipeleft' et 'swiperight'
 - [Bootstrap 3.3.6](http://getbootstrap.com/css/) sous licence MIT
 
@@ -37,3 +37,6 @@ Ce projet est distribué sous licence MIT, reproduite dans le fichier LICENSE ic
 
 2016-06-28
 - ajout du fichier LICENCE
+
+2016-07-16
+- mise à jour de jQuery (2.1.4 vers 2.2.4)
