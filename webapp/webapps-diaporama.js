@@ -18,7 +18,7 @@ Diaporama.prototype.show = function(index) {
 		var file, description;
 		this.index = (index + this.files.length) % this.files.length;
 		file = this.files[this.index];
-		description = file.name + '<br />(' + file.type + ', ' + this.formatFileSize(file.size) + ', ' + file.lastModifiedDate.toLocaleDateString() + ')';
+		description = file.name + '\n(' + file.type + ', ' + this.formatFileSize(file.size) + ', ' + this.formatFileDate(file) + ')';
 		this.image.hide().attr('src', window.URL.createObjectURL(file)).attr('title', description);
 	} else {
 		this.index = -1;
@@ -42,6 +42,10 @@ Diaporama.prototype.showNext = function() {
 
 Diaporama.prototype.showLast = function() {
 	this.show(this.files.length - 1);
+};
+
+Diaporama.prototype.formatFileDate = function(file) {
+	return new Date(file.lastModified).toLocaleDateString();
 };
 
 Diaporama.prototype.formatFileSize = function(size) {
@@ -93,7 +97,7 @@ $(function() {
 		if (ready) {
 			var file = d.files[d.index];
 			span.children(':first-child').text(file.name);
-			span.children(':last-child').text(d.image[0].naturalWidth + 'x' + d.image[0].naturalHeight + ', ' + file.type + ', ' + d.formatFileSize(file.size) + ', ' + file.lastModifiedDate.toLocaleDateString());
+			span.children(':last-child').text(d.image[0].naturalWidth + 'x' + d.image[0].naturalHeight + ', ' + file.type + ', ' + d.formatFileSize(file.size) + ', ' + d.formatFileDate(file));
 		}
 	};
 
@@ -149,13 +153,24 @@ $(function() {
 	});
 
 	/* Faire défiler les images en tactile, grâce à jQuery Mobile */
-	$('#diaporama-content').on('swipeleft', function() {
-		diaporama.showNext();
+	$('#diaporama-content').on('touchstart', function(startEvent) {
+		var startX, moveX;
+		function touchmove(event) {
+			if (event.originalEvent.touches)
+				moveX = event.originalEvent.touches[0].clientX;
+		}
+		if (startEvent.originalEvent.touches) {
+			startX = startEvent.originalEvent.touches[0].clientX;
+			$(document).on('touchmove', touchmove).one('touchend', function() {
+				$(document).off('touchmove', touchmove);
+				if (moveX - startX > 30) { //swipe right => previous
+					diaporama.showPrevious();
+				} else if (startX - moveX > 30) { //swipe left => next
+					diaporama.showNext();
+				}
+			});
+		}
 	});
-	$('#diaporama-content').on('swiperight', function() {
-		diaporama.showPrevious();
-	});
-
 
 	/* Faire défiler les images  avec les touches gauche/droite du clavier */
 	$(document.body).on('keypress', function(event) {
