@@ -50,3 +50,6 @@ Ce projet est distribué sous licence MIT, reproduite dans le fichier LICENSE ic
 - détection manuelle de 'swipeleft' et 'swiperight' pour supprimer la dépendance vers [jQuery Mobile 1.4.5](https://jquerymobile.com/) 
 - mise à jour de jQuery (3.2.1 => 3.3.1) et renommage de "bootstrap" en "bootstrap3"
 - passage des liens externes en HTTPS
+
+2018-08-30
+- mise à jour de la capture d'écran
