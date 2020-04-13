@@ -76,9 +76,7 @@ Diaporama.prototype.onimageload = function(event) {
 
 $(function() {
 	/* Créer un diaporama, qui va nous permettre de naviguer parmi les images */
-	var diaporama = new Diaporama($('#diaporama-content')),
-		/* Récupérer la barre de navigation, qu'il faudra mettre à jour quand on change d'image */
-		navigation = $('#navigation').hide();
+	var diaporama = new Diaporama($('#diaporama-content'));
 
 	/*
 	 * Profiter du "diaporama.onchange" pour :
@@ -88,16 +86,21 @@ $(function() {
 	 */
 	diaporama.onchange = function(d) {
 		var ready = d.index >= 0,
-			n = $('#navigation').toggle(ready),
 			span = $('#image-description').toggle(ready);
 		$('#image-size-button').toggle(ready);
-		n.children(':lt(2)').prop('disabled', d.index == 0);
-		n.children(':gt(2)').prop('disabled', d.index == d.files.length - 1);
-		n.children('#position').text((d.index + 1) + ' / ' + d.files.length);
+		$('#navigation').toggle(ready);
+		$('#show-first-button').prop('disabled', d.index == 0);
+		$('#show-previous-button').prop('disabled', d.index == 0);
+		$('#show-next-button').prop('disabled',d.index == d.files.length - 1);
+		$('#show-last-button').prop('disabled',d.index == d.files.length - 1);
+		$('#position').text((d.index + 1) + ' / ' + d.files.length);
+		$('#image-description').toggle(ready);
 		if (ready) {
 			var file = d.files[d.index];
-			span.children(':first-child').text(file.name);
-			span.children(':last-child').text(d.image[0].naturalWidth + 'x' + d.image[0].naturalHeight + ', ' + file.type + ', ' + d.formatFileSize(file.size) + ', ' + d.formatFileDate(file));
+			var description = d.image[0].naturalWidth + 'x' + d.image[0].naturalHeight + ', ' + file.type + ', ' + d.formatFileSize(file.size) + ', ' + d.formatFileDate(file);
+			$('#image-description')
+				.children(':first-child').text(file.name).end()
+				.children(':last-child').text(description).end();
 		}
 	};
 
@@ -126,11 +129,11 @@ $(function() {
 		$(document.body).css('background-color', this.value);
 	});
 
-	/* 
+	/*
 	 * Passer d'un mode de dimensionnement à un autre :
 	 * - 'scale-down' affiche les images entièrement, sans les déformer, mais en les réduisant si elles sont trop grandes
 	 * - 'contain' s'assure que les images soient les plus grandes possibles, mais sans les déformer et en les affichant entièrement
-	 * - 'cover' affiche les images de manière à couvrir la zone, en tronquant ce qui dépasse éventuellement dans une dimension 
+	 * - 'cover' affiche les images de manière à couvrir la zone, en tronquant ce qui dépasse éventuellement dans une dimension
 	 */
 	$('#image-size-button').on('click', function() {
 		var img = $('#diaporama-content > img'),
@@ -142,10 +145,10 @@ $(function() {
 	});
 
 	/* Gérer les 4 boutons de navigation "first", "previous", "next" et "last" */
-	navigation.on('click', 'button[data-action]', function(event) {
-		var action = $(event.target).closest('button').attr('data-action');
-		diaporama[action]();
-	});
+	$('#show-first-button').click(() => diaporama.showFirst());
+	$('#show-previous-button').click(() => diaporama.showPrevious());
+	$('#show-next-button').click(() => diaporama.showNext());
+	$('#show-last-button').click(() => diaporama.showLast());
 
 	/* Ajuster la taille des images quand la taille de la fenêtre change */
 	$(window).on('resize', function() {

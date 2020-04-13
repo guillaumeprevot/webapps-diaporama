@@ -4,17 +4,15 @@ A simple diaporama application using HTML5, JavaScript and CSS3.
 
 ## Présentation
 
-[Cette application](https://techgp.fr/webapps/webapps-diaporama.html) écrite en HTML5, JavaScript et CSS3 vous permettra de visualiser des photos ou des images.
+[Cette application](https://techgp.fr:9005/webapps-diaporama/webapps-diaporama.html) écrite en HTML5, JavaScript et CSS3 vous permettra de visualiser des photos ou des images.
 
 Les librairies suivantes ont été utilisées pour cette application :
 
-- [jQuery 3.3.1](https://jquery.com/) sous licence MIT
-- [Bootstrap 3.3.7](https://getbootstrap.com/docs/3.3/components/) sous licence MIT
+- [jQuery 3.5.0](https://jquery.com/)
+- [Bootstrap 4.4.1](https://getbootstrap.com/)
+- [Popper 1.16.1](https://popper.js.org/), dépendance de Bootstrap 4
+- [Material Icons](https://material.io/tools/icons) pour les boutons
 - [DryIcons](https://dryicons.com/) pour le favicon
-
-L'application est fournie avec un fichier manifest `webapps-diaporama.appcache` permettant la mise en cache et l'utilisation en mode déconnecté. Plus d'info chez Mozilla [en français](https://developer.mozilla.org/fr/docs/Utiliser_Application_Cache) ou [en anglais](https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache).
-
-NB : quand le certificat HTTPS est incorrect, la mise en cache échouera sous Chrome avec l'erreur `Manifest fetch Failed (9)`. Dans ce cas, faites les tests en HTTP et/ou utilisez un certificat valide en production.
 
 ## Captures d'écran
 
@@ -53,3 +51,8 @@ Ce projet est distribué sous licence MIT, reproduite dans le fichier LICENSE ic
 
 2018-08-30
 - mise à jour de la capture d'écran
+
+2020-04-13
+- nouvelle version plus moderne à l'occasion de la migration vers Bootstrap 4 (4.4.1)
+- intégration de Popper (1.16.1) + mise à jour de jQuery (3.5.0) + utilisation de Material Icons au lieu de Glyphicons
+- suppression de Application Cache, devenu obsolète (https://developer.mozilla.org/fr/docs/Web/HTML/Utiliser_Application_Cache)

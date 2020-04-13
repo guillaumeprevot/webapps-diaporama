@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html manifest="./webapps-diaporama.appcache">
+<html>
 	<head>
 		<title>Diaporama</title>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="robots" content="noindex, nofollow" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" type="text/css" href="./libs/bootstrap3/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="./libs/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="./webapps-diaporama.css" />
 		<link href="./webapps-diaporama.ico" rel="shortcut icon" />
 		<link href="./webapps-diaporama.ico" rel="icon" type="image/x-icon" />
@@ -17,33 +17,32 @@
 <div id="diaporama-toolbar">
 
 	<input id="open-files-input" type="file" accept="image/*" multiple />
-	<button id="open-files-button" type="button" class="btn btn-default" title="Ouvrir un ou plusieurs fichiers">
-		<span class="glyphicon glyphicon-open-file"></span>
+	<button id="open-files-button" type="button" class="btn btn-link" title="Ouvrir un ou plusieurs fichiers">
+		<img src="./libs/material-icons/open-files.svg" />
 	</button>
 
 	<input id="background-color-input" type="color" value="#333333" />
-	<button id="background-color-button" type="button" class="btn btn-default" title="Choisir la couleur de fond">
-		<span class="glyphicon glyphicon-tint"></span>
+	<button id="background-color-button" type="button" class="btn btn-link" title="Choisir la couleur de fond">
+		<img src="./libs/material-icons/background-color.svg" />
 	</button>
 
-	<button id="image-size-button" type="button" class="btn btn-default" title="Choisir la méthode de redimensionnement" style="display: none;">
-		<span class="glyphicon glyphicon-resize-full"></span>
+	<button id="image-size-button" type="button" class="btn btn-link" title="Choisir la méthode de redimensionnement" style="display: none;">
+		<img src="./libs/material-icons/image-size.svg" />
 	</button>
 
 	<div class="btn-group" id="navigation" style="display: none;">
-		<button type="button" class="btn btn-default" data-action="showFirst" title="Revenir au début">
-			<span class="glyphicon glyphicon-step-backward"></span>
+		<button id="show-first-button" type="button" class="btn btn-link" title="Revenir au début">
+			<img src="./libs/material-icons/show-first.svg" />
 		</button>
-		<button type="button" class="btn btn-default" data-action="showPrevious" title="Afficher l'image précédente">
-			<span class="glyphicon glyphicon-backward"></span>
+		<button id="show-previous-button" type="button" class="btn btn-link" title="Afficher l'image précédente">
+			<img src="./libs/material-icons/show-previous.svg" />
 		</button>
-		<button id="position" type="button" class="btn btn-default" disabled>
+		<span id="position"></span>
+		<button id="show-next-button" type="button" class="btn btn-link" title="Afficher l'image suivante">
+			<img src="./libs/material-icons/show-next.svg" />
 		</button>
-		<button type="button" class="btn btn-default" data-action="showNext" title="Afficher l'image suivante">
-			<span class="glyphicon glyphicon-forward"></span>
-		</button>
-		<button type="button" class="btn btn-default" data-action="showLast" title="Aller à la fin">
-			<span class="glyphicon glyphicon-step-forward"></span>
+		<button id="show-last-button" type="button" class="btn btn-link" title="Aller à la fin">
+			<img src="./libs/material-icons/show-last.svg" />
 		</button>
 	</div>
 
@@ -59,13 +58,15 @@
 
 <div id="diaporama-copyright">
 	Développé par <a target="_blank" href="https://github.com/guillaumeprevot">Tech GP</a>
-	grâce à <a target="_blank" href="https://jquery.com/">jQuery</a> et
-	<a target="_blank" href="https://getbootstrap.com/docs/3.3/components/">Bootstrap</a>,
+	grâce à <a target="_blank" href="https://jquery.com/">jQuery</a>,
+	<a target="_blank" href="https://getbootstrap.com/">Bootstrap</a> et
+	<a target="_blank" href="https://material.io/tools/icons">Material Icons</a>,
 	favicon par <a target="_blank" href="https://dryicons.com/">DryIcons</a>.
 </div>
 
 		<script type="text/javascript" src="./libs/jquery/jquery.min.js"></script>
-		<script type="text/javascript" src="./libs/bootstrap3/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="./libs/popper/popper.min.js"></script>
+		<script type="text/javascript" src="./libs/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="./webapps-diaporama.js"></script>
 	</body>
 </html>
