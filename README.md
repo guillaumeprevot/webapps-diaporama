@@ -4,7 +4,7 @@ A simple diaporama application using HTML5, JavaScript and CSS3.
 
 ## Présentation
 
-[Cette application](https://techgp.fr:9005/webapps-diaporama/webapps-diaporama.html) écrite en HTML5, JavaScript et CSS3 vous permettra de visualiser des photos ou des images.
+Cette application écrite en HTML5, JavaScript et CSS3 vous permettra de visualiser des photos ou des images directement dans votre navigateur.
 
 Les librairies suivantes ont été utilisées pour cette application :
 
@@ -55,4 +55,4 @@ Ce projet est distribué sous licence MIT, reproduite dans le fichier LICENSE ic
 2020-04-13
 - nouvelle version plus moderne à l'occasion de la migration vers Bootstrap 4 (4.4.1)
 - intégration de Popper (1.16.1) + mise à jour de jQuery (3.5.0) + utilisation de Material Icons au lieu de Glyphicons
-- suppression de Application Cache, devenu obsolète (https://developer.mozilla.org/fr/docs/Web/HTML/Utiliser_Application_Cache)
+- suppression de Application Cache, [devenu obsolète](https://developer.mozilla.org/fr/docs/Web/HTML/Utiliser_Application_Cache)
